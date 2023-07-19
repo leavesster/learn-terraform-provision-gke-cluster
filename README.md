@@ -14,3 +14,7 @@ required but highly recommended to keep your GKE cluster isolated.
 project_id = <PROJECT_ID>
 region     = <REGION>
 ```
+
+## TODO
+
+- [ ] 给 instance 配置 ssh，gcloud，kubectl 以及 kubeconfig
