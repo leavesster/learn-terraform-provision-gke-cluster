@@ -4,3 +4,13 @@ This repo is a companion repo to the [Provision a GKE Cluster tutorial](https://
 
 This sample repo also creates a VPC and subnet for the GKE cluster. This is not
 required but highly recommended to keep your GKE cluster isolated.
+
+## 配置
+
+根据文档，配置 gcloud，安装 terraform，创建项目。
+修改 `terraform.tfvars` 文件，填入项目 ID，和创建的 region。
+
+```yaml
+project_id = <PROJECT_ID>
+region     = <REGION>
+```
