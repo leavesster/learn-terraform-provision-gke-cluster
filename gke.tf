@@ -26,6 +26,19 @@ resource "google_container_cluster" "primary" {
   ip_allocation_policy {
   }
 
+  resource_labels = {
+    env="${var.project_id}",
+    project="${var.project_id}",
+    usage="demo"
+  }
+
+  monitoring_config {
+    enable_components = ["SYSTEM_COMPONENTS", "APISERVER", "CONTROLLER_MANAGER", "SCHEDULER"]
+    managed_prometheus {
+        enabled = true
+    }
+  }
+
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
   # node pool and immediately delete it.
