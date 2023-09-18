@@ -30,6 +30,6 @@ resource "kubernetes_service" "ng_svc" {
 }
 
 output "ingress" {
-  value = kubernetes_ingress_v1.nginx.status.0.load_balancer.0.ingress.0.ip
+  value = kubernetes_ingress_v1.nginx.status.0.load_balancer.0.ingress
   description = "value of ingress ip"
 }
