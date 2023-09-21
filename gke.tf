@@ -20,30 +20,30 @@ variable "gke_num_nodes" {
 resource "google_container_cluster" "primary" {
   name     = "${var.project_id}-gke"
   location = var.region
-  
+
   enable_autopilot = true
   # https://github.com/hashicorp/terraform-provider-google/issues/10782#issuecomment-1080195853
   ip_allocation_policy {
   }
 
   resource_labels = {
-    env="${var.project_id}",
-    project="${var.project_id}",
-    usage="demo"
+    env     = "${var.project_id}",
+    project = "${var.project_id}",
+    usage   = "demo"
   }
 
   monitoring_config {
     enable_components = ["SYSTEM_COMPONENTS", "APISERVER", "CONTROLLER_MANAGER", "SCHEDULER"]
     managed_prometheus {
-        enabled = true
+      enabled = true
     }
   }
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
   # node pool and immediately delete it.
-#   remove_default_node_pool = true
-#   initial_node_count       = 1
+  #   remove_default_node_pool = true
+  #   initial_node_count       = 1
 
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
